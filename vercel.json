@@ -1,1 +1,5 @@
-gi
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index1.html" }
+  ]
+}
