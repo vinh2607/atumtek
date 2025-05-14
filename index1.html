@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>ATUMTEK - Photography Equipment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* Announcement bar */
+        .announcement-bar {
+            background-color: #1a5954;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .announcement-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .announcement-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1a5954;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .nav-menu a:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icons a {
+            margin-left: 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #1a5954;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero section */
+        .hero {
+            width: 100%;
+            height: 80vh;
+            position: relative;
+            background-image: url('https://atumtek.com/cdn/shop/files/ATUMTEK-main-page-banner-M.jpg?v=1721187726&width=3000');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 0 5%;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .discover-btn {
+            display: inline-block;
+            background-color: #1a5954;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+
+        .discover-btn:hover {
+            background-color: #134541;
+        }
+
+        /* Products section */
+        .products-section {
+            padding: 50px 5%;
+        }
+
+        .products-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product {
+            position: relative;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .product:hover img {
+            transform: translateY(-5px);
+        }
+
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #1a5954;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f8f8;
+            padding: 50px 5%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #1a5954;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #1a5954;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: #1a5954;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .hero {
+                height: 60vh;
+                background-position: 65% center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-bar {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .discover-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Cookie consent popup */
+        .cookie-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(55, 78, 103, 0.7);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cookie-consent {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .cookie-consent h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cookie-consent p {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .accept-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .decline-btn {
+            background-color: white;
+            color: black;
+            border: 1px solid #ddd;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+    <div class="announcement-nav">
+        <a href="#"><i class="fas fa-chevron-left"></i></a>
+        <a href="#"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    3-year Warranty and 30-day Refund only on ATUMTEK Store
+</div>
+
+<!-- Header -->
+<header>
+    <div class="hamburger">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <a href="#" class="logo">
+        <img src="https://atumtek.com/cdn/shop/files/ATUMTEK_brand_logo_for_white_background_290x.png" alt="ATUMTEK Logo">
+    </a>
+
+    <ul class="nav-menu">
+        <li><a href="#">Tripods & Monopods</a></li>
+        <li><a href="#">Lights</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Support</a></li>
+    </ul>
+
+    <div class="header-icons">
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+<!-- Hero section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Capture Life<br>Share<br>Moments</h1>
+        <a href="#" class="discover-btn">Discover Tripods</a>
+    </div>
+</section>
+
+<!-- Products section -->
+<section class="products-section">
+    <h2>Featured Products</h2>
+
+    <div class="products">
+        <!-- Product 1 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/ATUMTEK-premium-series-best-seller_400x.jpg" alt="Tripod">
+            <h3 class="product-title">Selfie Stick Tripod</h3>
+            <div class="product-price">$29.99</div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/ATUMTEK-Mini_400x.jpg" alt="Compact Tripod">
+            <h3 class="product-title">Compact Tripod</h3>
+            <div class="product-price">$39.99</div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/ATUMTEK-MultiPod-Tripod-for-Phone-and-GoPro-with-Cold-Shoe-70inch-9_400x.jpg" alt="Flexible Tripod">
+            <h3 class="product-title">Flexible Tripod</h3>
+            <div class="product-price">$24.99</div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/multipod-tripod-for-phone-and-gopro-from-ATUMTEK_400x.jpg" alt="Professional Tripod">
+            <h3 class="product-title">Professional Tripod</h3>
+            <div class="product-price">$59.99</div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/ATUMTEK-monopod_400x.jpg" alt="Phone Mount">
+            <h3 class="product-title">Phone Mount</h3>
+            <div class="product-price">$19.99</div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product">
+            <img src="https://atumtek.com/cdn/shop/files/ATUMTEK-light-tripod_540x.png" alt="Car Mount">
+            <h3 class="product-title">Car Mount</h3>
+            <div class="product-price">$24.99</div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <ul>
+                <li><a href="#">Tripods & Monopods</a></li>
+                <li><a href="#">Lights</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Best Sellers</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Shipping & Returns</a></li>
+                <li><a href="#">Warranty Information</a></li>
+                <li><a href="#">Product Manuals</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About ATUMTEK</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Stay Connected</h3>
+            <p>Subscribe to our newsletter for updates on new products, sales, and more.</p>
+            <form>
+                <input type="email" placeholder="Your email address" style="padding: 10px; width: 100%; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <button type="submit" style="background-color: #1a5954; color: white; border: none; padding: 10px; width: 100%; margin-top: 10px; border-radius: 5px; cursor: pointer;">Subscribe</button>
+            </form>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2025 ATUMTEK. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
